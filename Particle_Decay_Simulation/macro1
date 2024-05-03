@@ -1,0 +1,32 @@
+    cout << "\n****** Somma istogrammi ******";
+    TH1F *hInvMass1=(TH1F*)file->Get("hInvMass1");
+    TH1F *hInvMass2=(TH1F*)file->Get("hInvMass2");
+    TH1F *hInvMass3=(TH1F*)file->Get("hInvMass3");
+    TH1F *hInvMass4=(TH1F*)file->Get("hInvMass4");
+    TH1F *hInvMass5=(TH1F*)file->Get("hInvMass5");
+
+    TH1F *h21=new TH1F(*hInvMass1):
+    h12->Add(hInvMass1,hInvMass2, 1, -1):
+    h34->Add(hInvMass3,hInvMass4, 1, -1):
+    h12->Draw();
+    h34->Draw();
+
+    TF1 *gausFit = new TF1("gausFit", "gaus",-3,3); //ESTREMI DA CAMBIARE
+
+    h12->Fit(gausFit);
+    TF1 *h12FitFunc = h12->GetFit("gausFit");
+    cout << "\n\nIstogramma 1 - Istogramma 2";
+    cout << "\n    Massa K* (media gaussiana): " << h12FitFunc->GetParameter(1);
+    cout << "\n    Larghezza K* (sigma gaussiana): " << h12FitFunc->GetParameter(2);
+    cout << "\n    Chi quadro: " << h12FitFunc->GetChiSquare();
+    cout << "\n    Gradi di libertà: " << h12FitFunc->GetNDF();
+    cout << "\n    Probabilità di ottenere il fit: " << 
+
+    h34->Fit(gausFit);
+    TF1 *h12FitFunc = h34->GetFit("gausFit");
+    cout << "\n\nIstogramma 3 - Istogramma 4";
+    cout << "\n    Massa K* (media gaussiana): " << h12FitFunc->GetParameter(1);
+    cout << "\n    Larghezza K* (sigma gaussiana): " << h12FitFunc->GetParameter(2);
+    cout << "\n    Chi quadro: " << h12FitFunc->GetChiSquare();
+    cout << "\n    Gradi di libertà: " << h12FitFunc->GetNDF();
+    cout << "\n    Probabilità di ottenere il fit: " << ;
