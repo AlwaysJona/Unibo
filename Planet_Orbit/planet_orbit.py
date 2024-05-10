@@ -29,6 +29,13 @@ ax.add_patch(sun)
 earth = plt.Circle((x[0],y[0]), 0.1, color = 'blue')
 ax.add_patch(earth)
 
+
+def init():
+    earth.center = (0,0)
+    ax.add_patch(earth)
+    return earth,
+
+
 # define function for animation
 def update(frame):
     line.set_xdata(x[frame-10:frame])
@@ -37,7 +44,7 @@ def update(frame):
     return line, earth
 
 
-ani = animation.FuncAnimation(fig=fig,func=update,frames=phi.size, interval = 30 )
+ani = animation.FuncAnimation(fig=fig,init_func = init,func=update,frames=phi.size, interval = 30, blit = True )
 plt.axis('off')
 plt.show()
     
