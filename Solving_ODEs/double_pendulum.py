@@ -3,6 +3,8 @@ import sympy as smp
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 from matplotlib import animation
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.animation import PillowWriter
 
 # define symbols for parameters
 
@@ -49,8 +51,8 @@ L = T - U
 
 # define Euler-Lagrange Equations
 
-EL1 = smp.diff(L, the1) - smp.diff(smp.diff(L,the1_d), t)
-EL2 = smp.diff(L, the2) - smp.diff(smp.diff(L,the2_d), t)
+EL1 = smp.diff(L, the1) - smp.diff(smp.diff(L,the1_d), t).simplify()
+EL2 = smp.diff(L, the2) - smp.diff(smp.diff(L,the2_d), t).simplify()
 
 # solve Euler-Lagrange Equations for the 2 second derivatives of the 2 angles
 
@@ -74,7 +76,7 @@ def dSdt(S, t, g, m1, m2, L1, L2):
 
 # set initial conditions
 
-t = np.linspace(0,1000,1000)
+t = np.linspace(0,40,1000)
 g = 9.81
 m1 = 1
 m2 = 2
@@ -98,7 +100,7 @@ y_2 = -L1*np.cos(res[0]) -L2*np.cos(res[1])
 fig, ax = plt.subplots()
 ax.set_xlim(-5,5)
 ax.set_ylim(-5,5)
-line1 = ax.plot([],[],'ro--', markersize = 8)
+line1 = ax.plot([],[],'ro--', markersize = 8)[0]
 
 # define animation function
 
@@ -109,4 +111,5 @@ def Update(frame):
 # animate
 
 anim = animation.FuncAnimation(fig,Update,1000, interval = 30)
+# anim.save('dblpend.gif', writer='pillow',fps=25)
 plt.show()
