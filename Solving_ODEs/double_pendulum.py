@@ -98,15 +98,18 @@ y_2 = -L1*np.cos(res[0]) -L2*np.cos(res[1])
 # set up the figure
 
 fig, ax = plt.subplots()
+fig.suptitle("Double Pendulum")
 ax.set_xlim(-5,5)
 ax.set_ylim(-5,5)
 line1 = ax.plot([],[],'ro--', markersize = 8)[0]
+line2 = ax.plot(x_2[0],y_2[0])[0]
 
 # define animation function
 
 def Update(frame):
     line1.set_data([0,x_1[frame],x_2[frame]], [0,y_1[frame],y_2[frame]])
-    return line1,
+    line2.set_data(x_2[:frame], y_2[:frame])
+    return line1, line2,
 
 # animate
 
