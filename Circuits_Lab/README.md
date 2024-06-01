@@ -1,0 +1,1 @@
+In questa esperienza si è analizzato il comportamento di un circuito RLC sottoposto ad una tensione sinusoidale. In particolare, avendo acquisito dei dati relativi alla tensione in entrata nei diversi canali, è stato possibile determinare due stime della frequenza di risonanza verificando l’andamento atteso della frequenza in funzione della fase e della tensione.
